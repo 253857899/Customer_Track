@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import entry.Customer;
 import service_Impl.BasicServiceImpl;
 import utils.ReturnInfo;
 
@@ -46,12 +47,10 @@ public class BasicController<T>  {
 	
 	@GetMapping("")
 	public @ResponseBody ReturnInfo index(String txt, Integer page, Integer limit) {
-		String where="";
-		if(txt!=null && txt!="")
-			where=" where "+getTname()+".name like '%"+txt+"%'";
-		return basicservice.select(where, page, limit);
+		
+		return basicservice.select(txt, page, limit);
 	}
-	
+
 	
 	
 	@GetMapping("{id}")
@@ -75,7 +74,13 @@ public class BasicController<T>  {
 	
 	@PutMapping("")
 	public @ResponseBody String update(T b) {
+		System.out.println(1);
 		basicservice.update(b);
+		return "{\"status\":1}";
+	}
+
+	@RequestMapping("delete")
+	public String update2(T b) {
 		return "{\"status\":1}";
 	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,15 +15,15 @@
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+ 
 
-
-  <aop:aspectj-autoproxy ></aop:aspectj-autoproxy>
+  <aop:aspectj-autoproxy ></aop:aspectj-autoproxy>  
 
  <!-- 注解驱动 -->
     <mvc:annotation-driven/> 
     <!-- 处理静态资源 -->
     <mvc:default-servlet-handler/>
-   
+    <mvc:resources location="/X-admin/login/" mapping="/X-admin/login/**"></mvc:resources>
     
     <!-- 处理器映射器 -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
@@ -40,17 +40,17 @@
     
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"  /><!--控制器视图路径，如果放在/WEB-INF/里，则只能通过控制器访问，防止外面直接调用  -->
-        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/"  /><!--控制器视图路径，如果放在/WEB-INF/里，则只能通过控制器访问，防止外面直接调用  -->
+        <property name="suffix" value=".jsp"/> 
     </bean>
     
     
     
 <!-- 扫描实现类的包 -->
-    <context:component-scan base-package="controller"></context:component-scan>
+    <context:component-scan base-package="controller"></context:component-scan>  
     <context:component-scan base-package="service_Impl"></context:component-scan>
     <context:component-scan base-package="dao"></context:component-scan>
     
     <import resource="applicationContext-dao.xml"/>
-
+	<import resource="shiro.xml"/>
 </beans>

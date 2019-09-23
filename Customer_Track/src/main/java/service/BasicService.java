@@ -1,8 +1,5 @@
 package service;
 
-import java.util.List;
-
-
 import utils.ReturnInfo;
 
 public interface BasicService<T> {
